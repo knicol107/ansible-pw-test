@@ -1,0 +1,11 @@
+---
+
+- name: "Ansible | Print a variable"
+  debug:
+    msg: "The operating system is {{ ansible_distribution }}"
+
+- name: "Ansible | Print multiple variable"
+  debug:
+    msg: |
+      The role is {{ host_role }}
+      The environment is {{ host_environment }}
