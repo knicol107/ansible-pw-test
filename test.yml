@@ -1,5 +1,8 @@
 ---
 
+  hosts: localhost
+  gather_facts: false
+  
 - name: "Ansible | Print a variable"
   debug:
     msg: "The operating system is {{ ansible_distribution }}"
