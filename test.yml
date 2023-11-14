@@ -3,7 +3,10 @@
 - hosts: all
   gather_facts: false
   tasks:
-    - name: Reading Out Variables
+    - name: Reading Out Environment Variables
       debug:
-        msg: "{{ lookup('env','F5_USERNAME','F5_PASSWORD','NB_PASSWORD','inventory','lbgrp','port','partition','pool','addrm','disabled') }}"
+        msg: "{{ lookup('env','F5_USERNAME','F5_PASSWORD','NB_PASSWORD') }}"
+    - name: Reading Out Extra Variables
+      debug:
+        msg: "{{ lookup('inventory','lbgrp','port','partition','pool','addrm','disabled') }}"
   
