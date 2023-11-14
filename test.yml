@@ -5,5 +5,5 @@
   tasks:
     - name: Reading Out Variables
       debug:
-        msg: "{{ lookup('env','F5_USERNAME','F5_PASSWORD','NB_PASSWORD') }}"
+        msg: "{{ lookup('env','F5_USERNAME','F5_PASSWORD','NB_PASSWORD','inventory','lbgrp','port','partition','pool','addrm','disabled') }}"
   
