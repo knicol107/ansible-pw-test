@@ -1,36 +1,9 @@
 ---
 
-- hosts: localhost
+- hosts: all
   gather_facts: false
-  vars:
-    f5_username: '{{ f5_username }}'
-    f5_password: '{{ f5_password }}'
-    token: '{{ nb_password }}'
-
   tasks:
-  - debug:
-      msg: |-
-          {% for k in _my_vars %}
-          {{ k }}: {{ lookup('vars', k) }}
-          {% endfor %}
-      vars:
-        _special_vars:
-          - ansible_dependent_role_names
-          - ansible_play_batch
-          - ansible_play_hosts
-          - ansible_play_hosts_all
-          - ansible_play_name
-          - ansible_play_role_names
-          - ansible_role_names
-          - environment
-          - hostvars
-          - play_hosts
-          - role_names
-        _hostvars: "{{ hostvars[inventory_hostname].keys() }}"
-        _my_vars: "{{ vars.keys()|
-                      difference(_hostvars)|
-                      difference(_special_vars)|
-                      reject('match', '^_.*$')|
-                      list|
-                      sort }}"
-      
+    - name: Reading Out Variables
+      debug:
+        msg: "{{ lookup('env','f5_username','f5_password','nb_password') }}"
+  
