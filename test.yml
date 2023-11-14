@@ -1,14 +1,16 @@
 ---
 
-  hosts: localhost
+- hosts: localhost
   gather_facts: false
-  
-- name: "Ansible | Print a variable"
-  debug:
-    msg: "The operating system is {{ ansible_distribution }}"
+  vars:
+    f5_username: '{{ f5_username }}'
+    f5_password: '{{ f5_password }}'
+    token: '{{ nb_password }}'
 
-- name: "Ansible | Print multiple variable"
-  debug:
-    msg: |
-      The role is {{ host_role }}
-      The environment is {{ host_environment }}
+  tasks:
+  - debug:
+      msg: |-
+        {% for k in _my_vars %}
+        {{ k }}: {{ lookup('vars', k) }}
+        {% endfor %}
+      
