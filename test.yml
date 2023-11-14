@@ -8,5 +8,5 @@
         msg: "{{ lookup('env','F5_USERNAME','F5_PASSWORD','NB_PASSWORD') }}"
     - name: Reading Out Extra Variables
       debug:
-        msg: "{{ 'host_inventory' }}"
+        msg: '{{ host_inventory }}'
   
